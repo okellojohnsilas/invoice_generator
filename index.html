@@ -3,238 +3,187 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Invoice Generator">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,invoice generator, html invoice">
+    <meta name="author" content="OKELLO JOHN SILAS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Maker (Canvas Version)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f4f4f4;
-        }
-
-        .invoice-box,
-        .canvas-box {
-            background: #fff;
-            padding: 30px;
-            border: 1px solid #eee;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-
-        input,
-        button {
-            padding: 8px;
-            margin: 5px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .logo-preview {
-            max-width: 150px;
-            max-height: 100px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-
-    <div class="invoice-box" id="formBox">
-        <h2>Invoice Generator</h2>
-        <div>
-            <label>Company Name:</label>
-            <input type="text" id="companyName"><br>
-            <label>Company Address:</label>
-            <input type="text" id="companyAddress"><br>
-            <label>Upload Logo:</label>
-            <input type="file" id="logoInput"><br>
-            <img id="logoPreview" class="logo-preview" src="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="#">Invoice Generator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div>
-            <label>Client Name:</label>
-            <input type="text" id="clientName"><br>
+    <section class="container">
+        <div class="invoice-box" id="formBox">
+            <h1 class="text-center text-primary pt-3 font-weight-bold">Invoice Generator</h1>
+            <hr class="bg-primary">
+            <div class="row">
+                <div class="col-md-6 border border-primary border-left-0 border-top-0 border-bottom-0">
+                    <h6 class="text-center font-weight-bold text-primary">YOUR INFORMATION</h6>
+                    <hr class="bg-primary">
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Company Name</label>
+                        <input type="text"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="companyName" placeholder="e.g. John Doe LTD">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Company Address</label>
+                        <input type="text" placeholder="e.g. XX block XX"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="companyAddress">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Phone Number</label>
+                        <input type="text"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="companyPhone" placeholder="e.g. +XX XXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Email Address</label>
+                        <input type="email"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="companyEmail" placeholder="e.g. address@company_name.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Upload Logo</label>
+                        <input type="file"
+                            class="form-control-file form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="yourlogoInput">
+                        <img id="yourlogoPreview" class="img-fluid mt-2" style="max-height:80px;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-center font-weight-bold text-primary">CLIENT INFORMATION</h6>
+                    <hr class="bg-primary">
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Client Name</label>
+                        <input type="text"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="clientName" placeholder="e.g. John Doe LTD">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Client Address</label>
+                        <input type="text"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="clientAddress" placeholder="e.g. XX block XX">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Phone Number</label>
+                        <input type="text"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="clientPhone" placeholder="e.g. +XX XXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Email</label>
+                        <input type="email"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="clientEmail" placeholder="e.g. address@company_name.com">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="bg-primary">
+            <div class="row pb-2">
+                <div class="col-md-3 border border-primary border-bottom-0 border-left-0 border-top-0">
+                    <h6 class="text-center text-primary font-weight-bold border-bottom border-primary">ADD INVOICE ITEM
+                    </h6>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Item Name</label>
+                        <textarea id="itemDescription" placeholder="Item information"
+                            class="form-control form-control-sm border border-primary"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Quantity</label>
+                        <input type="number"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="itemQuantity" placeholder="Enter quantity here ..." min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary font-weight-bold">Price</label>
+                        <input type="number"
+                            class="form-control form-control-sm border border-primary border-top-0 border-right-0 border-left-0"
+                            id="itemPrice" placeholder="Enter price here ..." min="0" step="0.01" value="0">
+                    </div>
+                    <button id="addItemBtn" class="btn btn-sm btn-primary btn-block font-weight-bold">ADD NEW
+                        ITEM</button>
+                </div>
+
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm" id="itemsTable">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Subtotal</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-center font-weight-bold h4">Total</td>
+                                    <td colspan="2" class="font-weight-bold text-primary h4">$<span
+                                            id="totalAmount">0.00</span>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- <div class="mb-2">
+                <button class="btn btn-outline-primary btn-sm btn-block font-weight-bold" id="addItemBtn">ADD NEW ITEM
+                    <i class="fas fa-plus-square"></i></button>
+            </div> -->
+            <div class="mb-4">
+                <button id="publishBtn" class="btn btn-primary btn-block font-weight-bold">GENERATE INVOICE <i
+                        class="fas fa-print"></i></button>
+            </div>
         </div>
+    </section>
 
-        <div>
-            <table id="itemsTable">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-
-            <button id="addItemBtn">Add Item</button>
-            <h3>Total: $<span id="totalAmount">0.00</span></h3>
+    <div class="canvas-box container" id="canvasBox" style="display:none;">
+        <div id="invoiceCanvas" class="p-4 bg-white border"></div>
+        <div class="row">
+            <div class="col-md-"></div>
+            <div class="col-md-"></div>
         </div>
-
-        <div>
-            <button id="publishBtn">Publish</button>
-        </div>
-
+        <button id="downloadBtn" class="btn btn-success btn-block mt-3">DOWNLOAD <i
+                class="fas fa-file-pdf"></i></button>
+        <button id="downloadBtn" class="btn btn-success btn-block mt-3">PRINT <i class="fas fa-print"></i></button>
     </div>
 
-    <!-- Canvas area -->
-    <div class="canvas-box" id="canvasBox" style="display:none;">
-        <div id="invoiceCanvas" style="padding:20px;">
-            <!-- Invoice preview will render here -->
-        </div>
-        <button id="downloadBtn">Download PDF</button>
-    </div>
-
-    <script>
-        let logoBase64 = "";
-
-        // Clear localStorage on page refresh
-        window.onload = () => {
-            localStorage.clear();
-            initEventListeners();
-        };
-
-        function initEventListeners() {
-            document.getElementById('logoInput').addEventListener('change', handleLogoUpload);
-            document.getElementById('addItemBtn').addEventListener('click', addItem);
-            document.getElementById('publishBtn').addEventListener('click', publish);
-            document.getElementById('downloadBtn').addEventListener('click', downloadPDF);
-        }
-
-        function handleLogoUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (evt) {
-                    logoBase64 = evt.target.result;
-                    document.getElementById('logoPreview').src = logoBase64;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function addItem() {
-            const tbody = document.querySelector('#itemsTable tbody');
-            const row = document.createElement('tr');
-            row.innerHTML = `
-            <td><input type="text"></td>
-            <td><input type="number" min="1" value="1"></td>
-            <td><input type="number" min="0" step="0.01" value="0"></td>
-            <td class="subtotal">0.00</td>
-            <td><button class="removeBtn">X</button></td>
-        `;
-            tbody.appendChild(row);
-
-            row.querySelectorAll('input').forEach(input => {
-                input.addEventListener('input', calculateTotal);
-            });
-
-            row.querySelector('.removeBtn').addEventListener('click', () => {
-                row.remove();
-                calculateTotal();
-            });
-
-            calculateTotal();
-        }
-
-        function calculateTotal() {
-            let total = 0;
-            document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
-                const qty = parseFloat(row.children[1].children[0].value);
-                const price = parseFloat(row.children[2].children[0].value);
-                const subtotal = qty * price;
-                row.children[3].textContent = subtotal.toFixed(2);
-                total += subtotal;
-            });
-            document.getElementById('totalAmount').textContent = total.toFixed(2);
-        }
-
-        function publish() {
-            calculateTotal();
-            const invoiceData = {
-                companyName: document.getElementById('companyName').value,
-                companyAddress: document.getElementById('companyAddress').value,
-                clientName: document.getElementById('clientName').value,
-                logo: logoBase64,
-                items: [],
-                total: document.getElementById('totalAmount').textContent
-            };
-
-            document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
-                const item = {
-                    description: row.children[0].children[0].value,
-                    qty: row.children[1].children[0].value,
-                    price: row.children[2].children[0].value,
-                    subtotal: row.children[3].textContent
-                };
-                invoiceData.items.push(item);
-            });
-
-            localStorage.setItem('savedInvoice', JSON.stringify(invoiceData));
-            renderCanvas(invoiceData);
-        }
-
-        function renderCanvas(data) {
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('canvasBox').style.display = 'block';
-
-            const canvas = document.getElementById('invoiceCanvas');
-            canvas.innerHTML = ''; // clear previous
-
-            const logoImg = data.logo ? `<img src="${data.logo}" style="max-height:80px;">` : '';
-
-            canvas.innerHTML += `
-            <div style="text-align:center;">${logoImg}</div>
-            <h2 style="text-align:center;">INVOICE</h2>
-            <p><b>Company:</b> ${data.companyName}</p>
-            <p><b>Address:</b> ${data.companyAddress}</p>
-            <p><b>Client:</b> ${data.clientName}</p>
-
-            <table style="width:100%; border-collapse: collapse;" border="1">
-                <thead>
-                    <tr>
-                        <th>Description</th><th>Qty</th><th>Price</th><th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${data.items.map(item => `
-                        <tr>
-                            <td>${item.description}</td>
-                            <td>${item.qty}</td>
-                            <td>${item.price}</td>
-                            <td>${item.subtotal}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-
-            <h3 style="text-align:right;">TOTAL: $${data.total}</h3>
-        `;
-        }
-
-        function downloadPDF() {
-            html2pdf().from(document.getElementById('invoiceCanvas')).save('invoice.pdf');
-        }
-    </script>
-
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
